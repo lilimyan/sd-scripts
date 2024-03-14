@@ -264,7 +264,7 @@ default_loras = get_config_item_or_set_default(
 )
 default_max_lora_number = get_config_item_or_set_default(
     key='default_max_lora_number',
-    default_value=len(default_loras),
+    default_value=len(default_loras) if isinstance(default_loras, list) and len(default_loras) > 0 else 5,
     validator=lambda x: isinstance(x, int) and x >= 1
 )
 default_cfg_scale = get_config_item_or_set_default(
@@ -291,8 +291,8 @@ default_styles = get_config_item_or_set_default(
     key='default_styles',
     default_value=[
         "Fooocus V2",
-        "Fooocus Masterpiece",
-        "Anime"
+        "Fooocus Enhance",
+        "Fooocus Sharp"
     ],
     validator=lambda x: isinstance(x, list) and all(y in modules.sdxl_styles.legal_style_names for y in x)
 )
@@ -449,7 +449,7 @@ def add_ratio(x):
     a, b = x.replace('*', ' ').split(' ')[:2]
     a, b = int(a), int(b)
     g = math.gcd(a, b)
-    return f'{a}×{b}  \U00002223  {a // g}:{b // g}'
+    return f'{a}×{b} <span style="color: grey;"> \U00002223 {a // g}:{b // g}</span>'
 
 
 default_aspect_ratio = add_ratio(default_aspect_ratio)
