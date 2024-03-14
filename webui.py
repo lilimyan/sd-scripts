@@ -112,7 +112,7 @@ with shared.gradio_root:
             with gr.Row():
                 with gr.Column(scale=17):
                     prompt = gr.Textbox(show_label=False, placeholder="Type prompt here or paste parameters.", elem_id='positive_prompt',
-                                        container=False, autofocus=True, elem_classes='type_row', lines=15, elem_classes=['resizable_area'])
+                                        container=False, autofocus=True, lines=15, elem_classes=['resizable_area'])
 
                     default_prompt = modules.config.default_prompt
                     if isinstance(default_prompt, str) and default_prompt != '':
