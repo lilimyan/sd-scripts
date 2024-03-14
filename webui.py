@@ -269,8 +269,9 @@ with shared.gradio_root:
                                             value=modules.config.default_output_format)
 
                 negative_prompt = gr.Textbox(label='Negative Prompt', show_label=True, placeholder="Type prompt here.",
-                                             info='Describing what you do not want to see.', lines=2,
+                                             info='Describing what you do not want to see.', lines=5,
                                              elem_id='negative_prompt',
+                                             elem_classes=['resizable_area'],
                                              value=modules.config.default_prompt_negative)
                 seed_random = gr.Checkbox(label='Random', value=True)
                 image_seed = gr.Textbox(label='Seed', value=0, max_lines=1, visible=False) # workaround for https://github.com/gradio-app/gradio/issues/5354
@@ -363,7 +364,7 @@ with shared.gradio_root:
                                                      choices=['None'] + modules.config.lora_filenames, value=n,
                                                      elem_classes='lora_model', scale=5)
                             lora_weight = gr.Slider(label='Weight', minimum=modules.config.default_loras_min_weight,
-                                                    maximum=modules.config.default_loras_max_weight, step=0.01, value=v,
+                                                    maximum=modules.config.default_loras_max_weight, step=0.05, value=v,
                                                     elem_classes='lora_weight', scale=5)
                             lora_ctrls += [lora_enabled, lora_model, lora_weight]
 
